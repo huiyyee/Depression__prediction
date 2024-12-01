@@ -312,27 +312,27 @@ def main():
     user_input = st.text_area("Enter your text here:", 
                               placeholder="Share your thoughts and feelings here...", 
                               height=200, max_chars=500, key="input_text")
-    # if st.button("Predict"):
-    #     if user_input:
-    #         try:
-    #             depression_prediction = make_predictions(user_input)
-    #             predicted_class = "depression" if depression_prediction[0] == "depression" else "not depression"
-    #             emoji = "🫂" if predicted_class == "depression" else "😊"
-    #             st.markdown(
-    #                 f'<div class="result">The model predicts that the text indicates signs of <b style="color: red;">{predicted_class}</b>.</div>', 
-    #                 unsafe_allow_html=True
-    #             )                
-    #             st.markdown(f'<div class="emoji">{emoji}</div>', unsafe_allow_html=True)
+    if st.button("Predict"):
+        if user_input:
+            try:
+                depression_prediction = make_predictions(user_input)
+                predicted_class = "depression" if depression_prediction[0] == "depression" else "not depression"
+                emoji = "🫂" if predicted_class == "depression" else "😊"
+                st.markdown(
+                    f'<div class="result">The model predicts that the text indicates signs of <b style="color: red;">{predicted_class}</b>.</div>', 
+                    unsafe_allow_html=True
+                )                
+                st.markdown(f'<div class="emoji">{emoji}</div>', unsafe_allow_html=True)
 
-    #             if predicted_class == "depression":
-    #                 st.markdown('<div class="recommendation">Here are some recommendations for you:</div>', unsafe_allow_html=True)
-    #                 recommendation = get_recommendation(user_input)
-    #                 st.markdown(f'<div class="recommendation">{recommendation}</div>', unsafe_allow_html=True)
+                if predicted_class == "depression":
+                    st.markdown('<div class="recommendation">Here are some recommendations for you:</div>', unsafe_allow_html=True)
+                    recommendation = get_recommendation(user_input)
+                    st.markdown(f'<div class="recommendation">{recommendation}</div>', unsafe_allow_html=True)
 
-    #         except Exception as e:
-    #             st.error(f"An error occurred during prediction: {str(e)}")
-    #     else:
-    #         st.write("Please enter some text to get a prediction.")
+            except Exception as e:
+                st.error(f"An error occurred during prediction: {str(e)}")
+        else:
+            st.write("Please enter some text to get a prediction.")
 
 if __name__ == "__main__":
     main()
