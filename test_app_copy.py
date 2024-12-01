@@ -21,16 +21,16 @@ from keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # # Load the pickled files
-save_path = '/Users/huiyee/Downloads/Study/Year3Sem2/FYP_project/backend_copy'
+# save_path = '/Users/huiyee/Downloads/Study/Year3Sem2/FYP_project/backend_copy'
 
-os.makedirs(save_path, exist_ok=True)
+# os.makedirs(save_path, exist_ok=True)
 
-with open(os.path.join(save_path, 'tfidf_matrix.pkl'), 'rb') as f:
-    vectorizer = pickle.load(f)
+# with open(os.path.join(save_path, 'tfidf_matrix.pkl'), 'rb') as f:
+#     vectorizer = pickle.load(f)
 
-# Load the model from the pickle file
-with open(os.path.join(save_path,'hybrid_model.pkl'), 'rb') as file:
-    loaded_model_dict = pickle.load(file)
+# # Load the model from the pickle file
+# with open(os.path.join(save_path,'hybrid_model.pkl'), 'rb') as file:
+#     loaded_model_dict = pickle.load(file)
 
 # Extract the scaler and classifier
 loaded_scaler = loaded_model_dict['scaler']
@@ -38,7 +38,7 @@ best_lr_classifier = loaded_model_dict['classifier']
 tokenizer = loaded_model_dict['tokenizer']
 
 # Load the Keras model
-best_model_rnn = load_model('/Users/huiyee/Downloads/Study/Year3Sem2/FYP_project/backend_copy/sentiment_classifier_rnn.h5')
+best_model_rnn = load_model('sentiment_classifier_rnn.h5')
 
 # Define preprocessing functions
 def preprocess_text(text):
