@@ -27,20 +27,26 @@ from spacy.cli import download
 
 # os.makedirs(save_path, exist_ok=True)
 
-# with open('tfidf_matrix.pkl', 'rb') as f:
-#     vectorizer = pickle.load(f)
+with open('tfidf_matrix.pkl', 'rb') as f:
+    vectorizer = pickle.load(f)
 
-# # Load the model from the pickle file
-# with open('hybrid_model.pkl','rb') as file:
-#     loaded_model_dict = pickle.load(file)
+# Load the model from the pickle file
+with open('hybrid_model.pkl','rb') as file:
+    loaded_model_dict = pickle.load(file)
 
-# # Extract the scaler and classifier
-# loaded_scaler = loaded_model_dict['scaler']
-# best_lr_classifier = loaded_model_dict['classifier']
-# tokenizer = loaded_model_dict['tokenizer']
+# Extract the scaler and classifier
+loaded_scaler = loaded_model_dict['scaler']
+best_lr_classifier = loaded_model_dict['classifier']
+tokenizer = loaded_model_dict['tokenizer']
 
-# # Load the Keras model
-# best_model_rnn = load_model('sentiment_classifier_rnn.h5')
+# Load the Keras model
+best_model_rnn = load_model('sentiment_classifier_rnn.h5')
+
+import subprocess
+
+@st.cache_resource
+def download_en_core_web_sm():
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
 
 # Define preprocessing functions
 def preprocess_text(text):
@@ -194,6 +200,7 @@ def remove_empty_tokens(tokens):
 
 # Function to lemmatize text using spaCy
 # download("en_core_web_sm")
+download_en_core_web_sm()
 nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
     doc = nlp(' '.join(tokens))
