@@ -8,5 +8,5 @@ biopython
 translate 
 keras
 tensorflow
-spacy
+spacy==3.7.4
 thinc
