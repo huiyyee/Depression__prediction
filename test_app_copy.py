@@ -27,20 +27,20 @@ from spacy.cli import download
 
 # os.makedirs(save_path, exist_ok=True)
 
-with open('tfidf_matrix.pkl', 'rb') as f:
-    vectorizer = pickle.load(f)
+# with open('tfidf_matrix.pkl', 'rb') as f:
+#     vectorizer = pickle.load(f)
 
-# Load the model from the pickle file
-with open('hybrid_model.pkl','rb') as file:
-    loaded_model_dict = pickle.load(file)
+# # Load the model from the pickle file
+# with open('hybrid_model.pkl','rb') as file:
+#     loaded_model_dict = pickle.load(file)
 
-# Extract the scaler and classifier
-loaded_scaler = loaded_model_dict['scaler']
-best_lr_classifier = loaded_model_dict['classifier']
-tokenizer = loaded_model_dict['tokenizer']
+# # Extract the scaler and classifier
+# loaded_scaler = loaded_model_dict['scaler']
+# best_lr_classifier = loaded_model_dict['classifier']
+# tokenizer = loaded_model_dict['tokenizer']
 
-# Load the Keras model
-best_model_rnn = load_model('sentiment_classifier_rnn.h5')
+# # Load the Keras model
+# best_model_rnn = load_model('sentiment_classifier_rnn.h5')
 
 # Define preprocessing functions
 def preprocess_text(text):
@@ -136,22 +136,22 @@ chat_word_mapping = {
 }
 
 # Function to transform chat words
-# def transform_chat_words(text):
-#     for chat_word, expanded_form in chat_word_mapping.items():
-#         text = text.replace(chat_word, expanded_form)
-#     return text
+def transform_chat_words(text):
+    for chat_word, expanded_form in chat_word_mapping.items():
+        text = text.replace(chat_word, expanded_form)
+    return text
 
-# def translate_to_english(text, lang='en'):
-#     try:
-#         if lang != 'en':
-#             translator = Translator(to_lang="en")
-#             translation = translator.translate(text)
-#         else:
-#             translation = text
-#         return translation
-#     except Exception as e:
-#         print(f"Translation error: {e}")
-#         return None
+def translate_to_english(text, lang='en'):
+    try:
+        if lang != 'en':
+            translator = Translator(to_lang="en")
+            translation = translator.translate(text)
+        else:
+            translation = text
+        return translation
+    except Exception as e:
+        print(f"Translation error: {e}")
+        return None
 
 # Function to remove URLs
 def remove_urls(text):
@@ -193,7 +193,7 @@ def remove_empty_tokens(tokens):
     return [token for token in tokens if token.strip()]
 
 # Function to lemmatize text using spaCy
-spacy.cli.download("en_core_web_sm")
+download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
     doc = nlp(' '.join(tokens))
@@ -296,10 +296,10 @@ def main():
                 color: #333;
                 font-weight: 600;
             }
-            .recommendation {
-                font-size: 1rem;
-                color: #0073e6;
-            }
+            # .recommendation {
+            #     font-size: 1rem;
+            #     color: #0073e6;
+            # }
             .input-area, .predict-button {
                 text-align: center;
                 margin: 1rem 0;
@@ -312,27 +312,27 @@ def main():
     user_input = st.text_area("Enter your text here:", 
                               placeholder="Share your thoughts and feelings here...", 
                               height=200, max_chars=500, key="input_text")
-    if st.button("Predict"):
-        if user_input:
-            try:
-                depression_prediction = make_predictions(user_input)
-                predicted_class = "depression" if depression_prediction[0] == "depression" else "not depression"
-                emoji = "🫂" if predicted_class == "depression" else "😊"
-                st.markdown(
-                    f'<div class="result">The model predicts that the text indicates signs of <b style="color: red;">{predicted_class}</b>.</div>', 
-                    unsafe_allow_html=True
-                )                
-                st.markdown(f'<div class="emoji">{emoji}</div>', unsafe_allow_html=True)
+    # if st.button("Predict"):
+    #     if user_input:
+    #         try:
+    #             depression_prediction = make_predictions(user_input)
+    #             predicted_class = "depression" if depression_prediction[0] == "depression" else "not depression"
+    #             emoji = "🫂" if predicted_class == "depression" else "😊"
+    #             st.markdown(
+    #                 f'<div class="result">The model predicts that the text indicates signs of <b style="color: red;">{predicted_class}</b>.</div>', 
+    #                 unsafe_allow_html=True
+    #             )                
+    #             st.markdown(f'<div class="emoji">{emoji}</div>', unsafe_allow_html=True)
 
-                if predicted_class == "depression":
-                    st.markdown('<div class="recommendation">Here are some recommendations for you:</div>', unsafe_allow_html=True)
-                    recommendation = get_recommendation(user_input)
-                    st.markdown(f'<div class="recommendation">{recommendation}</div>', unsafe_allow_html=True)
+    #             if predicted_class == "depression":
+    #                 st.markdown('<div class="recommendation">Here are some recommendations for you:</div>', unsafe_allow_html=True)
+    #                 recommendation = get_recommendation(user_input)
+    #                 st.markdown(f'<div class="recommendation">{recommendation}</div>', unsafe_allow_html=True)
 
-            except Exception as e:
-                st.error(f"An error occurred during prediction: {str(e)}")
-        else:
-            st.write("Please enter some text to get a prediction.")
+    #         except Exception as e:
+    #             st.error(f"An error occurred during prediction: {str(e)}")
+    #     else:
+    #         st.write("Please enter some text to get a prediction.")
 
 if __name__ == "__main__":
     main()
