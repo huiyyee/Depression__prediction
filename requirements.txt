@@ -9,3 +9,4 @@ spacy
 translate 
 keras
 tensorflow
+os
