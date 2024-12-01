@@ -9,4 +9,4 @@ spacy
 translate 
 keras
 tensorflow
-spacy_streamlit 
+spacy-streamlit 
