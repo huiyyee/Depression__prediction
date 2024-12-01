@@ -9,3 +9,4 @@ translate
 keras
 tensorflow
 spacy==3.7.4
+thinc==8.1.0
