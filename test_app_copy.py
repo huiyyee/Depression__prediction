@@ -193,6 +193,7 @@ def remove_empty_tokens(tokens):
     return [token for token in tokens if token.strip()]
 
 # Function to lemmatize text using spaCy
+download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
     doc = nlp(' '.join(tokens))
