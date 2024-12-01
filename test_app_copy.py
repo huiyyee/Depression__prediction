@@ -30,7 +30,7 @@ from spacy.cli import download
 # with open(os.path.join(save_path, 'tfidf_matrix.pkl'), 'rb') as f:
 #     vectorizer = pickle.load(f)
 
-# # Load the model from the pickle file
+# Load the model from the pickle file
 with open('hybrid_model.pkl','rb') as file:
     loaded_model_dict = pickle.load(file)
 
@@ -67,7 +67,7 @@ def expand_contractions(text):
 # Chat words mapping dictionary
 chat_word_mapping = {
     # Your chat word mappings here
-       "afaik": "as far as i know",
+    "afaik": "as far as i know",
     "afk": "away from keyboard",
     "asap": "as soon as possible",
     "atk": "at the keyboard",
@@ -193,7 +193,7 @@ def remove_empty_tokens(tokens):
     return [token for token in tokens if token.strip()]
 
 # Function to lemmatize text using spaCy
-download("en_core_web_sm")
+spacy.cli.download("en_core_web_sm")
 nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
     doc = nlp(' '.join(tokens))
