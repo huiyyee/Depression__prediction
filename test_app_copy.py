@@ -29,8 +29,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 #     vectorizer = pickle.load(f)
 
 # # Load the model from the pickle file
-# with open(os.path.join(save_path,'hybrid_model.pkl'), 'rb') as file:
-#     loaded_model_dict = pickle.load(file)
+with open('hybrid_model.pkl'), 'rb') as file:
+    loaded_model_dict = pickle.load(file)
 
 # Extract the scaler and classifier
 loaded_scaler = loaded_model_dict['scaler']
