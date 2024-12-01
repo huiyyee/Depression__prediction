@@ -25,14 +25,12 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # os.makedirs(save_path, exist_ok=True)
 
-
-with open('tfidf_matrix.pkl', 'rb') as f:
-    vectorizer = pickle.load(f)
-
 # Load the model from the pickle file
 with open('hybrid_model.pkl','rb') as file:
     loaded_model_dict = pickle.load(file)
 
+with open('tfidf_matrix.pkl', 'rb') as f:
+    vectorizer = pickle.load(f)
 # Extract the scaler and classifier
 loaded_scaler = loaded_model_dict['scaler']
 best_lr_classifier = loaded_model_dict['classifier']
