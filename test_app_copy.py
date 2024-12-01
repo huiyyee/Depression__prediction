@@ -27,8 +27,8 @@ from spacy.cli import download
 
 # os.makedirs(save_path, exist_ok=True)
 
-# with open(os.path.join(save_path, 'tfidf_matrix.pkl'), 'rb') as f:
-#     vectorizer = pickle.load(f)
+with open('tfidf_matrix.pkl', 'rb') as f:
+    vectorizer = pickle.load(f)
 
 # Load the model from the pickle file
 with open('hybrid_model.pkl','rb') as file:
