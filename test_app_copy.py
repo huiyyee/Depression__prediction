@@ -136,22 +136,22 @@ chat_word_mapping = {
 }
 
 # Function to transform chat words
-def transform_chat_words(text):
-    for chat_word, expanded_form in chat_word_mapping.items():
-        text = text.replace(chat_word, expanded_form)
-    return text
+# def transform_chat_words(text):
+#     for chat_word, expanded_form in chat_word_mapping.items():
+#         text = text.replace(chat_word, expanded_form)
+#     return text
 
-def translate_to_english(text, lang='en'):
-    try:
-        if lang != 'en':
-            translator = Translator(to_lang="en")
-            translation = translator.translate(text)
-        else:
-            translation = text
-        return translation
-    except Exception as e:
-        print(f"Translation error: {e}")
-        return None
+# def translate_to_english(text, lang='en'):
+#     try:
+#         if lang != 'en':
+#             translator = Translator(to_lang="en")
+#             translation = translator.translate(text)
+#         else:
+#             translation = text
+#         return translation
+#     except Exception as e:
+#         print(f"Translation error: {e}")
+#         return None
 
 # Function to remove URLs
 def remove_urls(text):
