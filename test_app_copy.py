@@ -19,8 +19,7 @@ from translate import Translator
 from scipy.sparse import csr_matrix, hstack
 from keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from spacy.cli import download
-
+python -m spacy download en_core_web_sm 
 
 # # Load the pickled files
 # save_path = '/Users/huiyee/Downloads/Study/Year3Sem2/FYP_project/backend_copy'
@@ -199,7 +198,6 @@ def remove_empty_tokens(tokens):
     return [token for token in tokens if token.strip()]
 
 # Function to lemmatize text using spaCy
-# download("en_core_web_sm")
 download_en_core_web_sm()
 nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
