@@ -1,0 +1,8 @@
+streamlit
+pandas
+scikit-learn
+altair
+nltk
+contractions
+biopython
+spacy
