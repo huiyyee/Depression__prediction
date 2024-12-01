@@ -19,6 +19,8 @@ from translate import Translator
 from scipy.sparse import csr_matrix, hstack
 from keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from spacy.cli import download
+
 
 # # Load the pickled files
 # save_path = '/Users/huiyee/Downloads/Study/Year3Sem2/FYP_project/backend_copy'
