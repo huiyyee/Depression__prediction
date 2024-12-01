@@ -25,6 +25,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # os.makedirs(save_path, exist_ok=True)
 
+
 with open('tfidf_matrix.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
@@ -40,11 +41,6 @@ tokenizer = loaded_model_dict['tokenizer']
 # Load the Keras model
 best_model_rnn = load_model('sentiment_classifier_rnn.h5')
 
-import subprocess
-
-# @st.cache_resource
-# def download_en_core_web_sm():
-#     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
 
 # Define preprocessing functions
 def preprocess_text(text):
@@ -198,7 +194,8 @@ def remove_empty_tokens(tokens):
 
 # Function to lemmatize text using spaCy
 # download_en_core_web_sm()
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_sm-3.2.0')
+# nlp = spacy.load('en_core_web_sm')
 def lemmatize_text(tokens):
     doc = nlp(' '.join(tokens))
     lemmatized_tokens = [token.lemma_ for token in doc]
