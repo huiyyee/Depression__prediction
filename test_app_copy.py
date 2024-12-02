@@ -170,6 +170,7 @@ def remove_digits(text):
     return re.sub(r'\d+', '', text)
 
 # Function to remove stopwords
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 def remove_stopwords(text):
